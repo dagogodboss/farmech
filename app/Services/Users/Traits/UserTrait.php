@@ -51,10 +51,6 @@ trait UserTrait
         return $this->belongsToMany(Role::class,'user_roles');
     }
 
-    public function permissions() {
-        return $this->belongsToMany(Permission::class,'role_permissions');
-    }
-
     protected function hasPermission($permission) {
         return (bool) $this->permissions->where('title', $permission->title)->count();
     }

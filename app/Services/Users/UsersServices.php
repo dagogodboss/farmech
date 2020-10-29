@@ -35,7 +35,8 @@ class UsersServices
             };
             $tokenResult = $user->createToken("authToken")->plainTextToken;
             $result = [
-                $user->load('roles'),
+                $user,
+                $user->roles->load('permissions'),
                 'token' => $tokenResult
             ];
             return $this->apiSuccessResponse($result);

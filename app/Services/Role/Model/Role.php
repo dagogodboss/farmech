@@ -2,7 +2,7 @@
 
 namespace App\Services\Role\Model;
 
-use App\Services\Users\Model\User;
+use App\Services\Permissions\Model\Permission;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
@@ -13,5 +13,10 @@ class Role extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+
+
+    public function permissions() {
+        return $this->belongsToMany(Permission::class,'role_permissions');
+    }
 
 }
