@@ -4,6 +4,7 @@ namespace App\Services\Product\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Services\Product\Model\Product;
 use App\Services\Product\ProductServices;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function uploadImage(Request $request){
+        $request->validate([
+            'product_id' => 'required'
+        ]);
+        return $this->productServices->addImage($request);
     }
 
     /**

@@ -22,4 +22,5 @@ Route::get('/product', function () {
 Route::middleware('auth:sanctum')->prefix('products')->group(function () {
     Route::get('/show', 'ProductController@index');
     Route::post('/create', 'ProductController@create')->middleware('role:seller');
+    Route::post('/add-image', 'ProductController@uploadImage')->middleware('role:seller');
 });

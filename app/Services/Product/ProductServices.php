@@ -33,7 +33,7 @@ class ProductServices
             return $this->apiErrorResponse($err->getMessage());
         }
     }
-    // creating a product 
+    // creating a product
     public function create($request): JsonResponse
     {
         try {
@@ -42,6 +42,17 @@ class ProductServices
             return $this->apiSuccessResponse($products);
         } catch (Exception $err) {
             return $this->apiErrorResponse($err->getMessage());
+        }
+    }
+
+    public function addImage($request): JsonResponse
+    {
+        try {
+            $product = $this->repository->find($request->product_id);
+            $product->update(['image' => $request->image]);
+            return $this->apiSuccessResponse($product);
+        } catch (\Throwable $th) {
+            return $this->apiErrorResponse($th->getMessage());
         }
     }
     // update method here
